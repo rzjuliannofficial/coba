@@ -46,7 +46,7 @@ if (preg_match('#^/uploads/#', $requestUri)) {
 // =========================
 // BACA URL
 // =========================
-$url = isset($_GET['url']) ? trim($_GET['url'], '/') : 'home';
+$url = isset($_GET['url']) ? trim($_GET['url'], '/') : 'home'; //default to home
 $segments = explode('/', $url);
 
 

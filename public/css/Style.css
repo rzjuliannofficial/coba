@@ -405,6 +405,196 @@ body {
     width: 100%;
 }
 
+/* PENTING: Animasi `@keyframes` harus tetap menggunakan CSS murni.
+           Tailwind tidak memiliki utility class bawaan untuk @keyframes. */
+        @keyframes scroll-logos {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%); /* Menggulir separuh lebar track untuk looping */
+            }
+        }
+
+        /* Kelas untuk kontainer karosel */
+        .logo-carousel-container {
+            width: 100%;
+            background-color: transparent;
+            overflow: hidden; /* Menyembunyikan bagian yang sedang bergerak */
+            white-space: nowrap;
+            border-radius: 12px;
+            padding: 0; /* Padding disesuaikan */
+            position: relative;
+        }
+
+        /* Wrapper tempat semua logo (asli + duplikat) berada */
+        .logo-carousel-track {
+            display: inline-block;
+            width: 200%; /* Penting: Harus dua kali lebar konten untuk looping mulus */
+            animation: scroll-logos 30s linear infinite; /* Animasi utama */
+        }
+
+        /* Styling Setiap Logo */
+        .logo-item {
+            display: inline-block;
+            margin: 0; /* Jarak antar logo DIHILANGKAN */
+            height: 50px; 
+            line-height: 50px; /* Vertikal center */
+            text-align: center;
+        }
+        
+        .logo-item img {
+            max-height: 100%;
+            max-width: 120px; 
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            padding-right: 1rem;
+            /* Filter untuk membuat logo terlihat putih/abu-abu */
+            /* filter: grayscale(100%) brightness(1.8);    
+            opacity: 0.6; */
+            transition: opacity 0.3s;
+        }
+        
+        /* Catatan: Kelas fade-left dan fade-right dihilangkan
+           dan digantikan dengan Tailwind utility classes di HTML. */
+
+/* NEWS */
+
+        /* Gaya Header Kustom (Bootstrap Style Conversion) */
+        .header-font {
+            font-family: poppins;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1f2937;
+            text-align: center;
+        }
+        .press-style {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 1em; 
+        }
+
+        /* --- Kustom 3D Carousel Styling (Dipertahankan dari versi sebelumnya) --- */
+        .carousel-wrapper-3d {
+            position: relative;
+            height: 550px;
+            perspective: 1000px;
+            /* overflow: hidden; */
+            margin-top: 5rem;
+        }
+        
+        .carousel-item-3d {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 350px;
+            transition: transform 0.6s ease, opacity 0.6s ease, z-index 0s 0.3s;
+            transform-origin: center center;
+            box-sizing: border-box;
+            opacity: 0;
+            pointer-events: none;
+            cursor: pointer;
+        }
+
+        /* Gaya Kotak Gambar (Merah) */
+        .image-placeholder {
+            height: 180px;
+            background-color: #a33e38; 
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* KELAS STATUS ITEM (Kunci Efek 3D) */
+
+        .carousel-item-3d.active {
+            opacity: 1;
+            z-index: 10;
+            transform: translateX(-50%) scale(1.1); 
+            pointer-events: auto;
+            filter: blur(0px); 
+        }
+
+        .carousel-item-3d.next {
+            opacity: 0.7;
+            z-index: 9;
+            transform: translateX(10%) scale(0.9); 
+            pointer-events: auto;
+            filter: blur(1px);
+        }
+
+        .carousel-item-3d.prev {
+            opacity: 0.7;
+            z-index: 9;
+            transform: translateX(-110%) scale(0.9); 
+            pointer-events: auto;
+            filter: blur(1px);
+        }
+        
+        .carousel-item-3d.hidden {
+            opacity: 0;
+            z-index: 1;
+            transform: translateX(150%) scale(0.8);
+            transition: transform 0.6s ease, opacity 0.6s ease, z-index 0s 0.6s; 
+            filter: blur(2px);
+        }
+
+        /* Gaya Tombol Navigasi */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20; 
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.4); 
+            color: white;
+            border-radius: 9999px; /* Tailwind rounded-full */
+            transition: background-color 0.2s;
+            border: none;
+            outline: none;
+        }
+        .nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        /* Penempatan Tombol */
+        .btn-prev-custom { left: 0; } 
+        .btn-next-custom { right: 0; }
+        
+        /* Responsif */
+        @media (max-width: 768px) {
+            .carousel-wrapper-3d {
+                height: 450px; 
+            }
+            .carousel-item-3d {
+                width: 90%; 
+            }
+            .carousel-item-3d.next {
+                transform: translateX(5%) scale(0.9); 
+            }
+            .carousel-item-3d.prev {
+                transform: translateX(-95%) scale(0.9); 
+            }
+            .btn-prev-custom { left: 2%; } 
+            .btn-next-custom { right: 2%; }
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        /* Kustom Hover Scale untuk tombol Read More */
+        .hover-scale:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s ease-in-out;
+        }
+/* END OF NEWS */
+
 /* --- Product Page Hero --- */
 .product-hero {
     position: relative;
@@ -917,6 +1107,34 @@ body {
     /* color: var(--white); */
 }
 
+/* Fasilitas */
+    @keyframes scroll-logos {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%); /* Menggulir separuh lebar track untuk looping */
+            }
+        }
+
+        /* Kelas untuk kontainer karosel */
+        .point-carousel-container {
+            width: 100%;
+            background-color: transparent;
+            overflow: hidden; /* Menyembunyikan bagian yang sedang bergerak */
+            white-space: nowrap;
+            border-radius: 10px;
+            padding: 0; /* Padding disesuaikan */
+            position: relative;
+        }
+
+        /* Wrapper tempat semua logo (asli + duplikat) berada */
+        .point-carousel-track {
+            display: inline-block;
+            width: 200%; /* Penting: Harus dua kali lebar konten untuk looping mulus */
+            animation: scroll-logos 30s linear infinite; /* Animasi utama */
+        }
+/* end of fasilitas */
 /* --- Footer --- */
 
 .footer{
