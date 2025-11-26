@@ -1,22 +1,14 @@
 <?php
 
-require_once dirname(__DIR__, levels: 3) . '/config/Database.php';
-
-class ProductModel
+class ProductModel extends Model
 {
     private $conn;
 
-    public function __construct()
-{
-    $this->conn = Database::connect();
-
-    if (!$this->conn) {
-        die("DATABASE CONNECTION FAILED (PostgreSQL)");
+    public function __construct(){
+        $this->conn = Database::connect();
     }
-}
 
-   public function getAll()
-{
+   public function fetchProduct(){
     $sql = "SELECT id, nama_produk, deskripsi, kategori, link_demo, image 
             FROM produk 
             ORDER BY id DESC 

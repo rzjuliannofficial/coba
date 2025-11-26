@@ -13,4 +13,10 @@ class Controller
         require "../app/models/{$model}.php";
         return new $model;
     }
+
+    public function modelWebsite($model)
+    {
+        require "../app/models/website/{$model}.php";
+        return new $model;
+    }
 }

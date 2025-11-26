@@ -1,20 +1,20 @@
 <?php
 
-class PublicationModel extends Model
+class MemberModel extends Model
 {
     private $conn;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->conn = Database::connect();
     }
 
-    public function FetchPublication(){
-        $sql = "
-            SELECT id, judul, deskripsi, file_dokumen, kategori
-            FROM publikasi_lab
-            ORDER BY id DESC
-            LIMIT 3
-        ";
+    public function fetchTeam() {
+
+        $sql = "SELECT nama, nip, email, foto_profil, keahlian_text, deskripsi 
+                FROM dosen 
+                ORDER BY nama ASC 
+                LIMIT 2";
 
         $result = pg_query($this->conn, $sql);
 
