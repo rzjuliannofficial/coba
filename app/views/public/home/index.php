@@ -221,37 +221,6 @@
 </div>
 
 <!-- Product -->
-<?php
-require_once '../app/config/Koneksi.php'; 
-
-if (!$products) {
-    $products = [
-        [
-            'nama_produk' => 'AMATI',
-            'deskripsi' => 'Automated Cyber Security Maturity Assessment - A comprehensive security assessment tool designed to evaluate and enhance organizational cybersecurity posture.',
-            'kategori' => 'Security',
-            'link_demo' => '#',
-            'image' => 'img/amati.png'
-        ],
-        [
-            'nama_produk' => 'SEALS',
-            'deskripsi' => 'Smart Adaptive Learning System - An intelligent learning platform that adapts to individual student needs and learning patterns for optimal educational outcomes.',
-            'kategori' => 'Education',
-            'link_demo' => '#',
-            'image' => 'img/seals.png'
-        ],
-        [
-            'nama_produk' => 'Agrilink Vocpro',
-            'deskripsi' => 'Agricultural Vocational Professional Platform - Connecting farmers with modern agricultural technologies and best practices through innovative digital solutions.',
-            'kategori' => 'Agriculture',
-            'link_demo' => '#',
-            'image' => 'img/ijo-removebg-preview.png'
-        ]
-    ];
-}
-
-?>
-
 <div class="shadow-bar-top">
     <div class="half-circle-glow"></div>
 </div>

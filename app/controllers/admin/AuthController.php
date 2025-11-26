@@ -29,7 +29,7 @@ class AuthController extends Controller
             'id'       => $user['id'],
             'username' => $user['username'],
             'role'     => $user['role'],
-            'id_dosen' => $user['id_dosen'] // penting untuk editor
+            'id' => $user['id'] // penting untuk editor
         ];
 
         header("Location: /admin/dashboard");
@@ -46,7 +46,7 @@ class AuthController extends Controller
     {
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
-        $idDosen  = $_POST['id_dosen'] ?? null;
+        $idDosen  = $_POST['id'] ?? null;
 
         $userModel = new Users();
 
@@ -66,7 +66,7 @@ class AuthController extends Controller
             'username' => $username,
             'password' => $hash,
             'role'     => 'editor',
-            'id_dosen' => $idDosen
+            'id' => $idDosen
         ]);
 
         $_SESSION['success'] = "Registrasi berhasil! Silakan login.";

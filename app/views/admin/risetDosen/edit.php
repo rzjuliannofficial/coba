@@ -6,10 +6,10 @@
       class="bg-white p-6 rounded-lg shadow w-full max-w-3xl">
 
     <label class="block font-semibold mb-1">Dosen</label>
-    <select name="id_dosen" class="w-full p-2 border rounded mb-4">
+    <select name="id" class="w-full p-2 border rounded mb-4">
         <?php foreach ($dosen as $d): ?>
             <option value="<?= $d['id'] ?>"
-                <?= $riset['id_dosen'] == $d['id'] ? 'selected' : '' ?>>
+                <?= $riset['id'] == $d['id'] ? 'selected' : '' ?>>
                 <?= htmlspecialchars($d['nama']) ?>
             </option>
         <?php endforeach; ?>

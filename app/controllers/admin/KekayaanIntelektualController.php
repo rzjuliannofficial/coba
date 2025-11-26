@@ -12,7 +12,7 @@ class KekayaanIntelektualController extends Controller
         $m = new KekayaanIntelektual();
 
         if ($_SESSION['user']['role'] === 'editor') {
-            $data['ki'] = $m->getByDosen($_SESSION['user']['id_dosen']);
+            $data['ki'] = $m->getByDosen($_SESSION['user']['id']);
         } else {
             $data['ki'] = $m->getAll();
         }
@@ -33,7 +33,7 @@ class KekayaanIntelektualController extends Controller
         $m = new KekayaanIntelektual();
 
         $m->create([
-            $_POST['id_dosen'],
+            $_POST['id'],
             $_POST['judul'],
             $_POST['no_permohonan'],
             $_POST['tahun']
@@ -59,7 +59,7 @@ class KekayaanIntelektualController extends Controller
         $m = new KekayaanIntelektual();
 
         $m->updateKI($id, [
-            $_POST['id_dosen'],
+            $_POST['id'],
             $_POST['judul'],
             $_POST['no_permohonan'],
             $_POST['tahun']

@@ -12,7 +12,7 @@ class PenelitianLabController extends Controller
         $m = new PenelitianLab();
 
         if ($_SESSION['user']['role'] === 'editor') {
-            $data['penelitian'] = $m->getByDosen($_SESSION['user']['id_dosen']);
+            $data['penelitian'] = $m->getByDosen($_SESSION['user']['id']);
         } else {
             $data['penelitian'] = $m->getAll();
         }
@@ -33,7 +33,7 @@ class PenelitianLabController extends Controller
         $m = new PenelitianLab();
 
         $m->create([
-            $_POST['id_dosen'],
+            $_POST['id'],
             $_POST['judul'],
             $_POST['deskripsi'],
             $_POST['status']
@@ -59,7 +59,7 @@ class PenelitianLabController extends Controller
         $m = new PenelitianLab();
 
         $m->updateData($id, [
-            $_POST['id_dosen'],
+            $_POST['id'],
             $_POST['judul'],
             $_POST['deskripsi'],
             $_POST['status']

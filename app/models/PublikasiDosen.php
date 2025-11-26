@@ -8,7 +8,7 @@ class PublikasiDosen extends Model
     {
         $sql = "SELECT pd.*, d.nama AS nama_dosen
                 FROM publikasi_dosen pd
-                LEFT JOIN dosen d ON d.id = pd.id_dosen
+                LEFT JOIN dosen d ON d.id = pd.id
                 ORDER BY pd.id DESC";
 
         $res = pg_query($this->db, $sql);
@@ -22,8 +22,8 @@ class PublikasiDosen extends Model
     {
         $sql = "SELECT pd.*, d.nama AS nama_dosen
                 FROM publikasi_dosen pd
-                LEFT JOIN dosen d ON d.id = pd.id_dosen
-                WHERE pd.id_dosen = $1
+                LEFT JOIN dosen d ON d.id = pd.id
+                WHERE pd.id = $1
                 ORDER BY pd.id DESC";
 
         $res = pg_query_params($this->db, $sql, [$id]);
@@ -43,7 +43,7 @@ class PublikasiDosen extends Model
     public function create($params)
     {
         $sql = "INSERT INTO {$this->table}
-                (id_dosen, judul, deskripsi, tahun, link_jurnal, kategori)
+                (id, judul, deskripsi, tahun, link_jurnal, kategori)
                 VALUES ($1,$2,$3,$4,$5,$6)";
 
         return pg_query_params($this->db, $sql, $params);
@@ -52,11 +52,11 @@ class PublikasiDosen extends Model
     public function updatePublikasi($id, $params)
     {
         $sql = "UPDATE {$this->table}
-                SET id_dosen=$1, judul=$2, deskripsi=$3, tahun=$4, link_jurnal=$5, kategori=$6
+                SET id=$1, judul=$2, deskripsi=$3, tahun=$4, link_jurnal=$5, kategori=$6
                 WHERE id=$7";
 
         return pg_query_params($this->db, $sql, [
-            $params[0], // id_dosen
+            $params[0], // id
             $params[1], // judul
             $params[2], // deskripsi
             $params[3], // tahun

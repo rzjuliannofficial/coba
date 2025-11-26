@@ -35,7 +35,7 @@
         <input type="password" name="password" required>
 
         <label>Pilih Dosen</label>
-        <select name="id_dosen" required>
+        <select name="id" required>
     <option value="">-- Pilih Dosen --</option>
     <?php foreach($daftarDosen as $dosen): ?>
         <option value="<?= $dosen['id']; ?>"><?= $dosen['nama']; ?></option>
