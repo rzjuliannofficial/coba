@@ -30,7 +30,7 @@
         </select>
 
         <label>Pilih Dosen</label>
-<select name="id" required>
+<select name="id_dosen" required>
     <option value="">-- Pilih Dosen --</option>
     <?php foreach($dosen as $d): ?>
         <option value="<?= $d['id'] ?>"><?= htmlspecialchars($d['nama']) ?></option>

@@ -8,7 +8,7 @@ class KekayaanIntelektual extends Model
     {
         $sql = "SELECT ki.*, d.nama AS nama_dosen
                 FROM kekayaan_intelektual ki
-                JOIN dosen d ON d.id = ki.id
+                JOIN dosen d ON d.id = ki.id_dosen
                 ORDER BY ki.id DESC";
 
         $res = pg_query($this->db, $sql);
@@ -22,8 +22,8 @@ class KekayaanIntelektual extends Model
     {
         $sql = "SELECT ki.*, d.nama AS nama_dosen
                 FROM kekayaan_intelektual ki
-                JOIN dosen d ON d.id = ki.id
-                WHERE ki.id = $1
+                JOIN dosen d ON d.id = ki.id_dosen
+                WHERE ki.id_dosen = $1
                 ORDER BY ki.id DESC";
 
         $res = pg_query_params($this->db, $sql, [$id]);
@@ -45,7 +45,7 @@ class KekayaanIntelektual extends Model
     public function create($params)
     {
         $sql = "INSERT INTO {$this->table}
-                (id, judul, no_permohonan, tahun)
+                (id_dosen, judul, no_permohonan, tahun)
                 VALUES ($1,$2,$3,$4)";
 
         return pg_query_params($this->db, $sql, $params);
@@ -54,7 +54,7 @@ class KekayaanIntelektual extends Model
     public function updateKI($id, $params)
     {
         $sql = "UPDATE {$this->table}
-                SET id=$1,
+                SET id_dosen=$1,
                     judul=$2,
                     no_permohonan=$3,
                     tahun=$4

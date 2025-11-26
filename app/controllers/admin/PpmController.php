@@ -12,7 +12,7 @@ class PpmController extends Controller
         $m = new Ppm();
 
         if ($_SESSION['user']['role'] === 'editor') {
-            $data['ppm'] = $m->getByDosen($_SESSION['user']['id']);
+            $data['ppm'] = $m->getByDosen($_SESSION['user']['id_dosen']);
         } else {
             $data['ppm'] = $m->getAll();
         }
@@ -33,7 +33,7 @@ class PpmController extends Controller
         $m = new Ppm();
 
         $m->create([
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['tahun']
         ]);
@@ -58,7 +58,7 @@ class PpmController extends Controller
         $m = new Ppm();
 
         $m->updatePpm($id, [
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['tahun']
         ]);

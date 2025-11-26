@@ -66,7 +66,7 @@ class ProdukController extends Controller
         // Masukkan ke galeri jika image valid
         if ($image && $this->isImageFile($image)) {
             $g = new Galeri();
-            $uploadedBy = $_SESSION['user']['id'] ?? null;
+            $uploadedBy = $_SESSION['user']['id_dosen'] ?? null;
 
             $g->create([
                 $uploadedBy,
@@ -121,7 +121,7 @@ class ProdukController extends Controller
         if ($image !== $old['image'] && $this->isImageFile($image)) {
 
             $g = new Galeri();
-            $uploadedBy = $_SESSION['user']['id'] ?? null;
+            $uploadedBy = $_SESSION['user']['id_dosen'] ?? null;
 
             $g->create([
                 $uploadedBy,

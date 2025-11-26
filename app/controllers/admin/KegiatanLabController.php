@@ -30,7 +30,7 @@ class KegiatanLabController extends Controller
         $m = new KegiatanLab();
 
         if ($_SESSION['user']['role'] === 'editor') {
-            $data['kegiatan'] = $m->getByDosen($_SESSION['user']['id']);
+            $data['kegiatan'] = $m->getByDosen($_SESSION['user']['id_dosen']);
         } else {
             $data['kegiatan'] = $m->getAll();
         }
@@ -52,7 +52,7 @@ class KegiatanLabController extends Controller
 
         $m = new KegiatanLab();
         $m->create([
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['deskripsi'],
             $_POST['tanggal_kegiatan'],
@@ -83,7 +83,7 @@ class KegiatanLabController extends Controller
         if (!$file) $file = $old['file_dokumentasi'];
 
         $m->updateData($id, [
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['deskripsi'],
             $_POST['tanggal_kegiatan'],

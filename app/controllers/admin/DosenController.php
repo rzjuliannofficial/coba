@@ -12,7 +12,7 @@ class DosenController extends Controller
         $m = new Dosen();
 
         if ($_SESSION['user']['role'] === 'editor') {
-            $dosen = $m->find($_SESSION['user']['id']);
+            $dosen = $m->find($_SESSION['user']['id_dosen']);
             if (!$dosen) {
                 $_SESSION['error'] = "Akun editor tidak memiliki data dosen!";
                 return header("Location: /admin/dashboard");

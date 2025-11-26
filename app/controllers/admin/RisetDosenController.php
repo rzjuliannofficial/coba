@@ -12,7 +12,7 @@ class RisetDosenController extends Controller
         $m = new RisetDosen();
 
         if ($_SESSION['user']['role'] === 'editor') {
-            $data['riset'] = $m->getByDosen($_SESSION['user']['id']);
+            $data['riset'] = $m->getByDosen($_SESSION['user']['id_dosen']);
         } else {
             $data['riset'] = $m->getAll();
         }
@@ -33,7 +33,7 @@ class RisetDosenController extends Controller
         $m = new RisetDosen();
 
         $m->create([
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['tahun'],
             $_POST['sumber_dana']
@@ -59,7 +59,7 @@ class RisetDosenController extends Controller
         $m = new RisetDosen();
 
         $m->updateRiset($id, [
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['tahun'],
             $_POST['sumber_dana']

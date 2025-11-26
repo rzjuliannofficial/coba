@@ -8,7 +8,7 @@ class Ppm extends Model
     {
         $sql = "SELECT p.*, d.nama AS nama_dosen
                 FROM ppm p
-                JOIN dosen d ON d.id = p.id
+                JOIN dosen d ON d.id = p.id_dosen
                 ORDER BY p.id DESC";
 
         $res = pg_query($this->db, $sql);
@@ -23,8 +23,8 @@ class Ppm extends Model
     {
         $sql = "SELECT p.*, d.nama AS nama_dosen
                 FROM ppm p
-                JOIN dosen d ON d.id = p.id
-                WHERE p.id = $1
+                JOIN dosen d ON d.id = p.id_dosen
+                WHERE p.id_dosen = $1
                 ORDER BY p.id DESC";
 
         $res = pg_query_params($this->db, $sql, [$id]);
@@ -46,7 +46,7 @@ class Ppm extends Model
     public function create($params)
     {
         $sql = "INSERT INTO {$this->table}
-                (id, judul, tahun)
+                (id_dosen, judul, tahun)
                 VALUES ($1, $2, $3)";
 
         return pg_query_params($this->db, $sql, $params);
@@ -55,7 +55,7 @@ class Ppm extends Model
     public function updatePpm($id, $params)
     {
         $sql = "UPDATE {$this->table}
-                SET id=$1, judul=$2, tahun=$3
+                SET id_dosen=$1, judul=$2, tahun=$3
                 WHERE id=$4";
 
         return pg_query_params($this->db, $sql, [

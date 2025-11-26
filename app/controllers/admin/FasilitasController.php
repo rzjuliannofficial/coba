@@ -57,7 +57,7 @@ public function create()
 
         if ($foto && $this->isImageFile($foto)) {
             $g = new Galeri();
-            $uploadedBy = $_SESSION['user']['id'] ?? null;
+            $uploadedBy = $_SESSION['user']['id_dosen'] ?? null;
 
             $g->create([
                 $uploadedBy,
@@ -100,7 +100,7 @@ public function create()
 
         if ($fotoBaru !== $old['foto'] && $this->isImageFile($fotoBaru)) {
             $g = new Galeri();
-            $uploadedBy = $_SESSION['user']['id'] ?? null;
+            $uploadedBy = $_SESSION['user']['id_dosen'] ?? null;
 
             $g->create([
                 $uploadedBy,

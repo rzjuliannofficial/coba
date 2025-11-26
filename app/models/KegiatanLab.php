@@ -8,7 +8,7 @@ class KegiatanLab extends Model
     {
         $sql = "SELECT kl.*, d.nama AS nama_dosen
                 FROM kegiatan_lab kl
-                JOIN dosen d ON d.id = kl.id
+                JOIN dosen d ON d.id = kl.id_dosen
                 ORDER BY kl.id DESC";
 
         $res = pg_query($this->db, $sql);
@@ -23,8 +23,8 @@ class KegiatanLab extends Model
     {
         $sql = "SELECT kl.*, d.nama AS nama_dosen
                 FROM kegiatan_lab kl
-                JOIN dosen d ON d.id = kl.id
-                WHERE kl.id = $1
+                JOIN dosen d ON d.id = kl.id_dosen
+                WHERE kl.id_dosen = $1
                 ORDER BY kl.id DESC";
 
         $res = pg_query_params($this->db, $sql, [$id]);
@@ -46,7 +46,7 @@ class KegiatanLab extends Model
     public function create($params)
     {
         $sql = "INSERT INTO {$this->table}
-            (id, judul, deskripsi, tanggal_kegiatan, file_dokumentasi)
+            (id_dosen, judul, deskripsi, tanggal_kegiatan, file_dokumentasi)
             VALUES ($1,$2,$3,$4,$5)";
 
         return pg_query_params($this->db, $sql, $params);
@@ -55,7 +55,7 @@ class KegiatanLab extends Model
     public function updateData($id, $params)
     {
         $sql = "UPDATE {$this->table}
-            SET id=$1,
+            SET id_dosen=$1,
                 judul=$2,
                 deskripsi=$3,
                 tanggal_kegiatan=$4,

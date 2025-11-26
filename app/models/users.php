@@ -32,9 +32,9 @@ class Users extends Model
     public function create($data)
 {
     $role = $this->validRole($data['role']) ? $data['role'] : 'editor';
-    $idDosen = $data['id'] ?? null;
+    $idDosen = $data['id_dosen'] ?? null;
 
-    $sql = "INSERT INTO {$this->table} (username, password, role, id)
+    $sql = "INSERT INTO {$this->table} (username, password, role, id_dosen)
             VALUES ($1, $2, $3, $4)";
 
     return pg_query_params($this->db, $sql, [
@@ -49,14 +49,14 @@ class Users extends Model
     public function updateUserNoPass($id, $username, $role, $idDosen = null)
     {
         if (!$this->validRole($role)) $role = 'editor';
-        $sql = "UPDATE {$this->table} SET username=$1, role=$2, id=$3 WHERE id=$4";
+        $sql = "UPDATE {$this->table} SET username=$1, role=$2, id_dosen=$3 WHERE id=$4";
         return pg_query_params($this->db, $sql, [$username, $role, $idDosen, $id]);
     }
 
     public function updateUser($id, $username, $password, $role, $idDosen = null)
     {
         if (!$this->validRole($role)) $role = 'editor';
-        $sql = "UPDATE {$this->table} SET username=$1, password=$2, role=$3, id=$4 WHERE id=$5";
+        $sql = "UPDATE {$this->table} SET username=$1, password=$2, role=$3, id_dosen=$4 WHERE id=$5";
         return pg_query_params($this->db, $sql, [$username, $password, $role, $idDosen, $id]);
     }
 

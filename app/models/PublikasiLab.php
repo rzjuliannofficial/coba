@@ -8,7 +8,7 @@ class PublikasiLab extends Model
     {
         $sql = "SELECT pl.*, d.nama AS nama_dosen
                 FROM publikasi_lab pl
-                LEFT JOIN dosen d ON d.id = pl.id
+                LEFT JOIN dosen d ON d.id = pl.id_dosen
                 ORDER BY pl.id DESC";
 
         $res = pg_query($this->db, $sql);
@@ -22,8 +22,8 @@ class PublikasiLab extends Model
     {
         $sql = "SELECT pl.*, d.nama AS nama_dosen
                 FROM publikasi_lab pl
-                LEFT JOIN dosen d ON d.id = pl.id
-                WHERE pl.id = $1
+                LEFT JOIN dosen d ON d.id = pl.id_dosen
+                WHERE pl.id_dosen = $1
                 ORDER BY pl.id DESC";
 
         $res = pg_query_params($this->db, $sql, [$id]);
@@ -43,7 +43,7 @@ class PublikasiLab extends Model
     public function create($params)
     {
         $sql = "INSERT INTO {$this->table}
-                (id, judul, deskripsi, file_dokumen, kategori)
+                (id_dosen, judul, deskripsi, file_dokumen, kategori)
                 VALUES ($1,$2,$3,$4,$5)";
 
         return pg_query_params($this->db, $sql, $params);
@@ -52,7 +52,7 @@ class PublikasiLab extends Model
      public function createAndReturnId($params)
     {
         $sql = "INSERT INTO {$this->table}
-                (id, judul, deskripsi, file_dokumen, kategori)
+                (id_dosen, judul, deskripsi, file_dokumen, kategori)
                 VALUES ($1,$2,$3,$4,$5)
                 RETURNING id";
 
@@ -64,7 +64,7 @@ class PublikasiLab extends Model
 public function updateLab($id, $params)
 {
     $sql = "UPDATE {$this->table}
-            SET id=$1,
+            SET id_dosen=$1,
                 judul=$2,
                 deskripsi=$3,
                 file_dokumen=$4,

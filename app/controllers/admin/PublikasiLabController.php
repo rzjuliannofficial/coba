@@ -53,7 +53,7 @@ class PublikasiLabController extends Controller
 
         $m = new PublikasiLab();
         $id_publikasi = $m->createAndReturnId([
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['deskripsi'],
             $file,
@@ -62,7 +62,7 @@ class PublikasiLabController extends Controller
 
         // ===== MASUK GALERI (jika image) =====
         if ($file && $this->isImageFile($file)) {
-            $uploadedBy = $_SESSION['user']['id'] ?? null;
+            $uploadedBy = $_SESSION['user']['id_dosen'] ?? null;
 
             $g = new Galeri();
             $g->create([
@@ -102,7 +102,7 @@ class PublikasiLabController extends Controller
         if (!$file) $file = $old['file_dokumen'];
 
         $m->updateData($id, [
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['deskripsi'],
             $file,
@@ -110,7 +110,7 @@ class PublikasiLabController extends Controller
         ]);
 
         if ($file !== $old['file_dokumen'] && $this->isImageFile($file)) {
-            $uploadedBy = $_SESSION['user']['id'] ?? null;
+            $uploadedBy = $_SESSION['user']['id_dosen'] ?? null;
 
             $g = new Galeri();
             $g->create([

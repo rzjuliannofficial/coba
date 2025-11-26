@@ -42,5 +42,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="script.js"></script>
+<script src="C:\laragon\www\PBLMVC\public\script"></script>
 </html>

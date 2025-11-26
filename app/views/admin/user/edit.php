@@ -33,10 +33,10 @@
         </select>
 
         <label class="block mb-1 font-semibold">Dosen (hanya untuk editor)</label>
-        <select name="id" class="w-full p-2 border rounded mb-4 focus:ring focus:ring-blue-300">
+        <select name="id_dosen" class="w-full p-2 border rounded mb-4 focus:ring focus:ring-blue-300">
             <option value="">-- Pilih Dosen --</option>
             <?php foreach($dosens as $d): ?>
-                <option value="<?= $d['id'] ?>" <?= ($user['id'] ?? '') == $d['id'] ? 'selected' : '' ?>>
+                <option value="<?= $d['id'] ?>" <?= ($user['id_dosen'] ?? '') == $d['id'] ? 'selected' : '' ?>>
                     <?= htmlspecialchars($d['nama']) ?>
                 </option>
             <?php endforeach; ?>

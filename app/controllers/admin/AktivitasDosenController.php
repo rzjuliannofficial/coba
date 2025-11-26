@@ -12,7 +12,7 @@ class AktivitasDosenController extends Controller
         $m = new AktivitasDosen();
 
         if ($_SESSION['user']['role'] === 'editor') {
-            $data['aktivitas'] = $m->getByDosen($_SESSION['user']['id']);
+            $data['aktivitas'] = $m->getByDosen($_SESSION['user']['id_dosen']);
         } else {
             $data['aktivitas'] = $m->getAll();
         }
@@ -33,7 +33,7 @@ class AktivitasDosenController extends Controller
         $m = new AktivitasDosen();
 
         $m->create([
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['jenis_aktivitas'],
             $_POST['tanggal'],
@@ -60,7 +60,7 @@ class AktivitasDosenController extends Controller
         $m = new AktivitasDosen();
 
         $m->updateAktivitas($id, [
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['jenis_aktivitas'],
             $_POST['tanggal'],

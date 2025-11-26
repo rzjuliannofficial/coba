@@ -12,7 +12,7 @@ class PublikasiDosenController extends Controller
         $m = new PublikasiDosen();
 
         if ($_SESSION['user']['role'] === 'editor') {
-            $data['publikasi'] = $m->getByDosen($_SESSION['user']['id']);
+            $data['publikasi'] = $m->getByDosen($_SESSION['user']['id_dosen']);
         } else {
             $data['publikasi'] = $m->getAll();
         }
@@ -33,7 +33,7 @@ class PublikasiDosenController extends Controller
         $m = new PublikasiDosen();
 
         $m->create([
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['deskripsi'],
             $_POST['tahun'],
@@ -61,7 +61,7 @@ class PublikasiDosenController extends Controller
         $m = new PublikasiDosen();
 
         $m->updatePublikasi($id, [
-            $_POST['id'],
+            $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['deskripsi'],
             $_POST['tahun'],

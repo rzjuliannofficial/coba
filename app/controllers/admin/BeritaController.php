@@ -50,7 +50,7 @@ class BeritaController extends Controller
 
         $m = new Berita();
         $id_berita = $m->createAndReturnId([
-            $_SESSION['user']['id'], // created_by
+            $_SESSION['user']['id_dosen'], // created_by
             $_POST['judul'],
             $_POST['isi_berita'],
             $_POST['tanggal'],
@@ -62,7 +62,7 @@ class BeritaController extends Controller
 
             $g = new Galeri();
             $g->create([
-                $_SESSION['user']['id'],
+                $_SESSION['user']['id_dosen'],
                 "berita/" . $gambar,
                 "",
                 null,       // id_penelitian
@@ -106,7 +106,7 @@ class BeritaController extends Controller
 
             $g = new Galeri();
             $g->create([
-                $_SESSION['user']['id'],
+                $_SESSION['user']['id_dosen'],
                 "berita/" . $gambar,
                 "",
                 null,

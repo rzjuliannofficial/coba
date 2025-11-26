@@ -28,7 +28,7 @@ class UserController extends Controller
         $username = trim($_POST['username']);
         $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $role = $_POST['role'];
-        $idDosen = $_POST['id'] ?? null;
+        $idDosen = $_POST['id_dosen'] ?? null;
 
         if ($model->findByUsername($username)) {
             $_SESSION['error'] = "Username sudah digunakan!";
@@ -39,7 +39,7 @@ class UserController extends Controller
             'username' => $username,
             'password' => $pass,
             'role'     => $role,
-            'id' => $idDosen
+            'id_dosen' => $idDosen
         ]);
 
         $_SESSION['success'] = "User berhasil ditambahkan!";
@@ -70,7 +70,7 @@ class UserController extends Controller
         $model = new Users();
         $username = trim($_POST['username']);
         $role = $_POST['role'];
-        $idDosen = $_POST['id'] ?? null;
+        $idDosen = $_POST['id_dosen'] ?? null;
 
         if (empty($_POST['password'])) {
             $model->updateUserNoPass($id, $username, $role, $idDosen);

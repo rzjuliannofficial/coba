@@ -7,4 +7,5 @@ define('LAYOUT_PATH', BASE_PATH . 'views/website/layout/');
 define('PAGES_PATH', BASE_PATH . 'views/website/pages/');
 
 // // Base URL
-define('BASE_URL', 'http://localhost/');
+define('BASE_URL', 'http://localhost/PBLMVC/');
+// "http://localhost/PBLMVC/public/css/Style.css"
