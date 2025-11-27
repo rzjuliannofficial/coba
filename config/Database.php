@@ -11,7 +11,7 @@ class Database
             $host = "localhost";
             $user = "postgres";
             $pass = "123";
-            $dbname = "Ai_database";
+            $dbname = "coba";
             self::$conn = pg_connect("host=$host port=5432 dbname=$dbname user=$user password=$pass");
 
             if (!self::$conn) {

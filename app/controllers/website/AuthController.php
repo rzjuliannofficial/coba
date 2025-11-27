@@ -5,12 +5,7 @@ class AuthController extends Controller
     {
         $this->view("admin/auth/login");
     }
-
-    public function register()
-    {
-        $this->view("admin/auth/register");
-    }
-
+    
     public function home()
     {
         $this->index();
