@@ -1,11 +1,6 @@
 <?php
 class HomeController extends Controller {
-    public function home() {
-        return $this->index();
-    }
-
     public function index() {
-
         $data['products']= $this->modelWebsite('ProductModel')->fetchProduct();
         $data['team']= $this->modelWebsite('MemberModel')->fetchTeam();
         $data['news']= $this->modelWebsite('NewsModel')->fetchNews();

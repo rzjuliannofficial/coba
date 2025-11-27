@@ -26,14 +26,14 @@
             </a>
             
             <div class="nav-links">
-                <a href="index.php" class="nav-link">Home</a>
-                <a href="product.php" class="nav-link">Product</a>
-                <a href="member.php" class="nav-link">Member</a>
-                <a href="#contact" class="nav-link">Gallery</a>
-                <a href="#contact" class="nav-link">Partner</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="home" class="nav-link">Home</a>
+                <a href="product" class="nav-link">Product</a>
+                <a href="member" class="nav-link">Member</a>
+                <a href="galery" class="nav-link">Gallery</a>
+                <a href="partner" class="nav-link">Partner</a>
+                <a href="contact" class="nav-link">Contact</a>
                 <button class="button-primary">
-                    <a href="dasboard.php">
+                    <a href="auth">
                         Log in
                     </a>
                 </button>

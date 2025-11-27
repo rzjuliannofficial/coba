@@ -31,7 +31,7 @@
                             <div class="logo-item"><img src="img/ijo-removebg-preview.png" alt="Ijo Logo"></div>
                             
                             <!-- Set Logo DUPLIKAT (untuk efek tak terbatas) -->
-                            <div class="logo-item"><img src="img/OwnCloud2-Logo.svg_-300x157.png" alt="OwnCloud Logo"></div>
+                            <div class="logo-item"><img src="img/OwnCloud2  -Logo.svg_-300x157.png" alt="OwnCloud Logo"></div>
                             <div class="logo-item"><img src="img/seals.png" alt="SEALS Logo"></div>
                             <div class="logo-item"><img src="img/amati.png" alt="Amati Logo"></div>
                             <div class="logo-item"><img src="img/gitea-300x107-removebg-preview.png" alt="Gitea Logo"></div>
@@ -134,91 +134,92 @@
     <div class="half-circle-glow"></div>
 </div>
 <section class="bg-[#f0f4f8] section">
-<div class="max-w-4xl mx-auto pt-[2rem] pb-[2rem]">
-    <div class="project header">
-        <div class="title">
-        <!-- Ikon Grup Orang (SVG Inline) -->
-            <i class="fa-solid fa-newspaper text-sm mr-2"></i> LATEST NEWS
+    <div class="max-w-4xl mx-auto pt-[2rem] pb-[2rem]">
+        <div class="project header">
+            <div class="title">
+            <!-- Ikon Grup Orang (SVG Inline) -->
+                <i class="fa-solid fa-newspaper text-sm mr-2"></i> LATEST NEWS
+            </div>
+            <p class="secondary-title">Hot Off the <span>Press</span></p>
+            <p class="text-center text-gray-500 mb-12">The most recent updates, all in one place.</p>
         </div>
-        <p class="secondary-title">Hot Off the <span>Press</span></p>
-        <p class="text-center text-gray-500 mb-12">The most recent updates, all in one place.</p>
-    </div>
 
-    <!-- Carousel Container (Pusat Logika Cover Flow) -->
-    <div class="carousel-wrapper-3d">
-        <?php if (count($news) > 0): ?>
-            <?php 
-                $delay_increment = 200; // Penambahan delay 200 milidetik per kartu
-                $delay = 0;
-            ?>
+        <!-- Carousel Container (Pusat Logika Cover Flow) -->
+        <div class="carousel-wrapper-3d">
+            <?php if (count($news) > 0): ?>
+                <?php 
+                    $delay_increment = 200; // Penambahan delay 200 milidetik per kartu
+                    $delay = 0;
+                ?>
 
-            <?php foreach ($news as $berita): ?>
-                <!-- Card News -->
-                <div class="carousel-item-3d bg-white shadow-xl rounded-xl p-4">
-                    <div class="h-48 w-full bg-gray-200 rounded-lg overflow-hidden relative mb-4">
-                        <?php if (!empty($berita['image'])): ?>
-                            <img src="<?= htmlspecialchars($berita['image']); ?>" 
-                                alt="<?= htmlspecialchars($berita['judul']); ?>" 
-                                class="w-full h-full object-cover">
-                        <?php else: ?>
-                            <div class="w-full h-full bg-[#a33e38] flex items-center justify-center text-white">
-                                <i class="fa-solid fa-image text-3xl opacity-50"></i>
-                            </div>
-                        <?php endif; ?>
-                    </div>
+                <?php foreach ($news as $berita): ?>
+                    <!-- Card News -->
+                    <div class="carousel-item-3d bg-white shadow-xl rounded-xl p-4">
+                        <div class="h-48 w-full bg-gray-200 rounded-lg overflow-hidden relative mb-4">
+                            <?php if (!empty($berita['image'])): ?>
+                                <img src="<?= htmlspecialchars($berita['image']); ?>" 
+                                    alt="<?= htmlspecialchars($berita['judul']); ?>" 
+                                    class="w-full h-full object-cover">
+                            <?php else: ?>
+                                <div class="w-full h-full bg-[#a33e38] flex items-center justify-center text-white">
+                                    <i class="fa-solid fa-image text-3xl opacity-50"></i>
+                                </div>
+                            <?php endif; ?>
+                        </div>
 
-                    <!-- title -->
-                    <h3 class="text-xl font-bold mb-2 text-gray-800">
-                        <?= htmlspecialchars($berita['judul']); ?>
-                    </h3>
-                    <!-- kategori -->
-                    <div class="flex flex-wrap text-xs mb-3 flex gap-2">
+                        <!-- title -->
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">
+                            <?= htmlspecialchars($berita['judul']); ?>
+                        </h3>
+                        <!-- kategori -->
+                        <div class="flex flex-wrap text-xs mb-3 flex gap-2">
+                            <?php 
+                                $kategori = $berita['kategori'] ?? '';
+                                if (!empty($kategori)) {
+                                    $categories = explode(',', $kategori);
+                                    // Tampilkan maksimal 3 category agar kartu tidak kepanjangan
+                                    $categories = array_slice($categories, 0, 3); 
+                                    foreach ($categories as $category): ?>
+                                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full font-semibold uppercase">
+                                            <?= htmlspecialchars(trim($category)); ?>
+                                        </span>
+                                <?php endforeach; } else { ?>
+                                    <span class="text-gray-400 text-xs italic">-</span>
+                            <?php } ?>
+
+                            <!-- <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full">Tech Series</span>
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full">Big Data</span> -->
+                        </div>
+                        <!-- deskripsi -->
+                        <p class="text-sm text-gray-500">
+                            <?= htmlspecialchars($berita['isi_berita']); ?>
+                        </p>
                         <?php 
-                            $kategori = $berita['kategori'] ?? '';
-                            if (!empty($kategori)) {
-                                $categories = explode(',', $kategori);
-                                // Tampilkan maksimal 3 category agar kartu tidak kepanjangan
-                                $categories = array_slice($categories, 0, 3); 
-                                foreach ($categories as $category): ?>
-                                    <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full font-semibold uppercase">
-                                        <?= htmlspecialchars(trim($category)); ?>
-                                    </span>
-                            <?php endforeach; } else { ?>
-                                <span class="text-gray-400 text-xs italic">-</span>
-                        <?php } ?>
-
-                        <!-- <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full">Tech Series</span>
-                        <span class="px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full">Big Data</span> -->
+                            //Tambah delay untuk kartu berikutnya
+                            $delay += $delay_increment; 
+                        ?>
                     </div>
-                    <!-- deskripsi -->
-                    <p class="text-sm text-gray-500">
-                        <?= htmlspecialchars($berita['isi_berita']); ?>
-                    </p>
-                    <?php 
-                        //Tambah delay untuk kartu berikutnya
-                        $delay += $delay_increment; 
-                    ?>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p class="product-description" style="text-align: center; grid-column: 1 / -1;">Belum ada data produk yang tersedia.</p>
-        <?php endif; ?> 
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="product-description" style="text-align: center; grid-column: 1 / -1;">Belum ada data produk yang tersedia.</p>
+            <?php endif; ?> 
 
-        <!-- Navigasi Tombol Panah -->
-        <button class="nav-btn btn-prev-custom" id="btnPrev">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="nav-btn btn-next-custom" id="btnNext">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        
+            <!-- Navigasi Tombol Panah -->
+            <button class="nav-btn btn-prev-custom" id="btnPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-btn btn-next-custom" id="btnNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+        </div>
+        <div class="flex justify-center">
+            <button class="button-primary">
+                Read more
+            </button>
+        </div>
     </div>
-    <div class="flex justify-center">
-        <button class="button-primary">
-            Read more
-        </button>
-    </div>
-</div>
+</section>
 
 <!-- Product -->
 <div class="shadow-bar-top">

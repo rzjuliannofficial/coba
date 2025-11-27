@@ -15,7 +15,7 @@ class NewsModel extends Model {
                     b.isi_berita, 
                     b.tanggal, 
                     b.gambar_utama,  --nanti ganti jadi image
-                    --b.kategori,
+                    b.kategori,
                     d.nama AS nama_pembuat  -- Mengambil kolom nama dari tabel users
                 FROM 
                     public.berita b
