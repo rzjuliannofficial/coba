@@ -20,8 +20,7 @@
 
             <td class="p-2 border">
                 <?php if ($f['foto']): ?>
-                    <img src="/uploads/fasilitas/<?= $f['foto'] ?>"
-                         class="w-16 h-16 rounded object-cover">
+                    <img src="/uploads/fasilitas/<?= $f['foto'] ?>"class="w-16 h-16 rounded object-cover">
                 <?php else: ?>
                     <span class="text-gray-400 text-sm">-</span>
                 <?php endif; ?>
@@ -36,8 +35,8 @@
                 </a>
 
                 <a href="/admin/Fasilitas/delete/<?= $f['id_fasilitas'] ?>"
-                   onclick="return confirm('Hapus fasilitas ini?')"
-                   class="text-red-600">
+                    onclick="return confirm('Hapus fasilitas ini?')"
+                    class="text-red-600">
                     <i class="fas fa-trash"></i> Hapus
                 </a>
             </td>

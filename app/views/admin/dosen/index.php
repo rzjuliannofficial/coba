@@ -11,6 +11,9 @@
             <th class="p-2 border">Nama</th>
             <th class="p-2 border">NIP</th>
             <th class="p-2 border">Email</th>
+            <th class="p-2 border">Keahlian</th>
+            <th class="p-2 border">Deskripsi</th>
+            <th class="p-2 border">Jabatan</th>
             <th class="p-2 border">Aksi</th>
         </tr>
     </thead>
@@ -27,6 +30,9 @@
             <td class="p-2 border"><?= htmlspecialchars($d['nama']) ?></td>
             <td class="p-2 border"><?= htmlspecialchars($d['nip']) ?></td>
             <td class="p-2 border"><?= htmlspecialchars($d['email']) ?></td>
+            <td class="p-2 border"><?= htmlspecialchars($d['keahlian_text']) ?></td>
+            <td class="p-2 border"><?= htmlspecialchars($d['deskripsi']) ?></td>
+            <td class="p-2 border"><?= htmlspecialchars($d['jabatan']) ?></td>
             <td class="p-2 border">
                 <a href="/admin/dosen/edit/<?= $d['id'] ?>" class="text-yellow-600 mr-2"><i class="fas fa-edit"></i> Edit</a>
                 <a href="/admin/dosen/delete/<?= $d['id'] ?>" onclick="return confirm('Hapus dosen ini?')" class="text-red-600"><i class="fas fa-trash"></i> Hapus</a>

@@ -26,7 +26,7 @@ class FasilitasController extends Controller
         $safe = "fasilitas_" . time() . "_" . bin2hex(random_bytes(5)) . "." . $ext;
 
         $dir = realpath(__DIR__ . '/../../..') . "/public/uploads/fasilitas/";
-        if (!is_dir($dir)) mkdir($dir, 0777, true);
+        if (!is_dir(filename: $dir)) mkdir($dir, 0777, true);
 
         return move_uploaded_file($f['tmp_name'], $dir . $safe) ? $safe : null;
     }

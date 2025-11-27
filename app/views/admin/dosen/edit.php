@@ -12,6 +12,19 @@
     <label class="block font-semibold mb-1">Email</label>
     <input type="email" name="email" required value="<?= htmlspecialchars($dosen['email']) ?>" class="w-full p-2 border rounded mb-4">
 
+    <label class="block font-semibold mb-1">Kehalian</label>
+    <input type="keahlian_text" name="keahlian_text" required value="<?= htmlspecialchars($dosen['keahlian_text']) ?>" class="w-full p-2 border rounded mb-4">
+
+    <label class="block font-semibold mb-1">Deskripsi</label>
+    <input type="deskripsi" name="deskripsi" required value="<?= htmlspecialchars($dosen['deskripsi']) ?>" class="w-full p-2 border rounded mb-4">
+
+    <label class="block font-semibold mb-1">Jabatan</label>
+    <select name="jabatan" class="w-full p-2 border rounded mb-4">
+        <option value="ketua_lab" <?= $dosen['jabatan']=='ketua_lab'?'selected':'' ?>>Ketua_Lab</option>
+        <option value="asisten_lab" <?= $dosen['jabatan']=='asisten_lab'?'selected':'' ?>>Asisten Lab</option>
+        <option value="member" <?= $dosen['jabatan']=='member'?'selected':'' ?>>Member</option>
+    </select>
+
     <label class="block font-semibold mb-1">Foto Profil Baru (opsional)</label>
     <input type="file" name="foto" class="w-full mb-4">
 

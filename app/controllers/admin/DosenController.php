@@ -4,9 +4,32 @@ class DosenController extends Controller
 {
     public function __construct()
     {
-        Middleware::auth(); // editor + admin boleh
+        Middleware::auth();
     }
 
+    /* ==========================
+     *     Upload FOTO
+     * ========================== */
+    private function uploadFoto($input = 'foto')
+    {
+        if (empty($_FILES[$input]) || $_FILES[$input]['error'] !== UPLOAD_ERR_OK) {
+            return null;
+        }
+
+        $f = $_FILES[$input];
+        $ext = pathinfo($f['name'], PATHINFO_EXTENSION);
+
+        $safe = "dosen_" . time() . "_" . bin2hex(random_bytes(5)) . "." . $ext;
+
+        $dir = realpath(__DIR__ . '/../../..') . "/public/uploads/dosen/";
+        if (!is_dir($dir)) mkdir($dir, 0777, true);
+
+        return move_uploaded_file($f['tmp_name'], $dir . $safe) ? $safe : null;
+    }
+
+    /* ==========================
+     *          INDEX
+     * ========================== */
     public function index()
     {
         $m = new Dosen();
@@ -22,95 +45,126 @@ class DosenController extends Controller
             $data['dosen'] = $m->getAll();
         }
 
-        $this->view('admin/dosen/index', $data);
+        $this->view("admin/dosen/index", $data);
     }
 
+    /* ==========================
+     *          CREATE
+     * ========================== */
     public function create()
     {
-        $this->view('admin/dosen/create');
+        $this->view("admin/dosen/create");
     }
 
-    private function handleUploadFoto($fileInputName = 'foto')
-    {
-        if (empty($_FILES[$fileInputName]) || $_FILES[$fileInputName]['error'] !== UPLOAD_ERR_OK) return null;
-
-        $f = $_FILES[$fileInputName];
-        $ext = pathinfo($f['name'], PATHINFO_EXTENSION);
-        $safe = 'dosen_' . time() . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
-        $destDir = __DIR__ . '/../../public/uploads/dosen/';
-        if (!is_dir($destDir)) mkdir($destDir, 0755, true);
-
-        return move_uploaded_file($f['tmp_name'], $destDir . $safe) ? $safe : null;
-    }
-
+    /* ==========================
+     *          STORE
+     * ========================== */
     public function store()
     {
-        $nama = trim($_POST['nama'] ?? '');
-        $nip  = trim($_POST['nip'] ?? '');
-        $email= trim($_POST['email'] ?? '');
+        $nama       = trim($_POST['nama'] ?? '');
+        $nip        = trim($_POST['nip'] ?? '');
+        $email      = trim($_POST['email'] ?? '');
+        $keahlian   = trim($_POST['keahlian_text'] ?? null);
+        $deskripsi  = trim($_POST['deskripsi'] ?? null);
+        $jabatan    = trim($_POST['jabatan'] ?? 'member');
+
         if ($nama === '' || $nip === '' || $email === '') {
             $_SESSION['error'] = "Semua field wajib diisi.";
             return header("Location: /admin/dosen/create");
         }
 
-        $foto = $this->handleUploadFoto('foto');
+        $foto = $this->uploadFoto();
 
         $m = new Dosen();
         $m->create([
-            'nama' => $nama,
-            'nip'  => $nip,
-            'email'=> $email,
-            'foto' => $foto
+            'nama'           => $nama,
+            'nip'            => $nip,
+            'email'          => $email,
+            'foto'           => $foto,
+            'keahlian_text'  => $keahlian,
+            'deskripsi'      => $deskripsi,
+            'jabatan'        => $jabatan
         ]);
 
         $_SESSION['success'] = "Dosen berhasil ditambahkan.";
         header("Location: /admin/dosen");
     }
 
+    /* ==========================
+     *          EDIT
+     * ========================== */
     public function edit($id)
     {
         $m = new Dosen();
-        $dosen = $m->find($id);
-        if (!$dosen) {
-            $_SESSION['error'] = "Dosen tidak ditemukan.";
+        $data['dosen'] = $m->find($id);
+
+        if (!$data['dosen']) {
+            $_SESSION['error'] = "Data dosen tidak ditemukan.";
             return header("Location: /admin/dosen");
         }
-        $this->view('admin/dosen/edit', ['dosen' => $dosen]);
+
+        $this->view("admin/dosen/edit", $data);
     }
 
+    /* ==========================
+     *          UPDATE
+     * ========================== */
     public function update($id)
     {
-        $nama = trim($_POST['nama'] ?? '');
-        $nip  = trim($_POST['nip'] ?? '');
-        $email= trim($_POST['email'] ?? '');
+        $m = new Dosen();
+        $old = $m->find($id);
+
+        if (!$old) {
+            $_SESSION['error'] = "Data dosen tidak ditemukan.";
+            return header("Location: /admin/dosen");
+        }
+
+        $nama       = trim($_POST['nama'] ?? '');
+        $nip        = trim($_POST['nip'] ?? '');
+        $email      = trim($_POST['email'] ?? '');
+        $keahlian   = trim($_POST['keahlian_text'] ?? null);
+        $deskripsi  = trim($_POST['deskripsi'] ?? null);
+        $jabatan    = trim($_POST['jabatan'] ?? 'member');
+
         if ($nama === '' || $nip === '' || $email === '') {
             $_SESSION['error'] = "Semua field wajib diisi.";
             return header("Location: /admin/dosen/edit/{$id}");
         }
 
-        $foto = $this->handleUploadFoto('foto');
+        $fotoBaru = $this->uploadFoto();
+        if (!$fotoBaru) {
+            $fotoBaru = $old['foto_profil'];
+        }
 
-        $m = new Dosen();
         $m->updateDosen($id, [
-            'nama' => $nama,
-            'nip'  => $nip,
-            'email'=> $email,
-            'foto' => $foto
+            'nama'          => $nama,
+            'nip'           => $nip,
+            'email'         => $email,
+            'foto'          => $fotoBaru,
+            'keahlian_text' => $keahlian,
+            'deskripsi'     => $deskripsi,
+            'jabatan'       => $jabatan
         ]);
 
         $_SESSION['success'] = "Dosen berhasil diperbarui.";
         header("Location: /admin/dosen");
     }
 
+    /* ==========================
+     *          DELETE
+     * ========================== */
     public function delete($id)
     {
         $m = new Dosen();
         $row = $m->find($id);
+
         if ($row && !empty($row['foto_profil'])) {
-            $file = __DIR__ . '/../../public/uploads/dosen/' . $row['foto_profil'];
+            $file = realpath(__DIR__ . '/../../..') . "/public/uploads/dosen/" . $row['foto_profil'];
             if (is_file($file)) @unlink($file);
         }
+
         $m->delete($id);
+
         $_SESSION['success'] = "Dosen berhasil dihapus.";
         header("Location: /admin/dosen");
     }
