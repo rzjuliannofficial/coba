@@ -34,12 +34,12 @@
         <label>Password</label>
         <input type="password" name="password" required>
 
-        <label>Pilih Dosen</label>
-        <select name="id_dosen" required>
-    <option value="">-- Pilih Dosen --</option>
-    <?php foreach($daftarDosen as $dosen): ?>
-        <option value="<?= $dosen['id']; ?>"><?= $dosen['nama']; ?></option>
-    <?php endforeach; ?>
+        <<label>Pilih Kategori</label>
+        <select name="kategori" required>
+            <option value="Berita">-- =Berita --</option>
+            <option value="Berita">-- Berita --</option>
+            <option value="Berita">-- Berita --</option>
+    
 </select>
 
         <button type="submit">Register</button>

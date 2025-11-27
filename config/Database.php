@@ -10,8 +10,8 @@ class Database
 
             $host = "localhost";
             $user = "postgres";
-            $pass = "123";
-            $dbname = "lab_ai_polinema";
+            $pass = "12345678";
+            $dbname = "zuhdi";
 
             self::$conn = pg_connect("host=$host port=5432 dbname=$dbname user=$user password=$pass");
 
