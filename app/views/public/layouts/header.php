@@ -33,7 +33,7 @@
                 <a href="partner" class="nav-link">Partner</a>
                 <a href="contact" class="nav-link">Contact</a>
                 <button class="button-primary">
-                    <a href="auth">
+                    <a href="/admin/login">
                         Log in
                     </a>
                 </button>

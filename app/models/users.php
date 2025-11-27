@@ -18,7 +18,7 @@ class Users extends Model
 
     public function getAllUsers()
     {
-        $sql = "SELECT * FROM {$this->table} ORDER BY id DESC";
+        $sql = "SELECT * FROM {$this->table} ORDER BY id asc";
         return pg_query($this->db, $sql);
     }
 

@@ -8,7 +8,7 @@ class Dosen extends Model
 
     public function getAll()
     {
-        $res = pg_query($this->db, "SELECT * FROM {$this->table} ORDER BY nama ASC");
+        $res = pg_query($this->db, "SELECT * FROM {$this->table} ORDER BY jabatan ASC");
         $rows = [];
         while ($row = pg_fetch_assoc($res)) {
             $rows[] = $row;
