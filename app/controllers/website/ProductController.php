@@ -1,5 +1,5 @@
 <?php
-class PatnerController extends Controller
+class ProductController extends Controller
 {
     public function index()
     {
