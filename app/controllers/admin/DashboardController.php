@@ -15,6 +15,7 @@ class DashboardController extends Controller
         $totalGaleri = 0;
 
         // Kirim ke view
+        
         $this->view('admin/dashboard/Dashboard', [
             'totalDosen' => $totalDosen,
             'totalUser'  => $totalUser,

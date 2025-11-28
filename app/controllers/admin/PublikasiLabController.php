@@ -101,7 +101,7 @@ class PublikasiLabController extends Controller
         $file = $this->uploadDokumen();
         if (!$file) $file = $old['file_dokumen'];
 
-        $m->updateData($id, [
+        $m->updateLab($id, [
             $_POST['id_dosen'],
             $_POST['judul'],
             $_POST['deskripsi'],

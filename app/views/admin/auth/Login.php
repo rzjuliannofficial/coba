@@ -7,8 +7,8 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/styleLoginAdmin.css">
-    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="/css/styleLoginAdmin.css">
+    <link rel="stylesheet" href="/css/Style.css">
 </head>
 <body class="login-page">
     <!-- Floating Icons -->
@@ -26,13 +26,10 @@
                 <h1 class="login-title">Admin Login</h1>
                 <p class="login-subtitle">Applied Informatics Laboratory</p>
             </div>
-            <?php
-                $error = isset($_GET['error']) ? $_GET['error'] : '';
-            ?>
-            <?php if ($error): ?>
+            <?php if (isset($_SESSION['error'])): ?>
                 <div class="alert-box alert-error">
                     <i class="fas fa-exclamation-circle"></i>
-                    <span><?= htmlspecialchars($error) ?></span>
+                    <span><?= $_SESSION['error']; unset($_SESSION['error']); ?></span>
                 </div>
             <?php endif; ?>
 
