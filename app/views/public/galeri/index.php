@@ -28,12 +28,12 @@
                     <?php foreach ($galleryItems as $item): ?>
                     <div class="carousel-card">
                         <div class="carousel-card-inner">
-                            <img src="<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['title']) ?>">
+                            <img src="<?= htmlspecialchars($item['file_url'] ?? '') ?>" alt="<?= htmlspecialchars($item['caption'] ?? '') ?>">
                             <div class="carousel-card-content">
-                                <h3 class="carousel-card-title"><?= htmlspecialchars($item['title']) ?></h3>
+                                <h3 class="carousel-card-title"><?= htmlspecialchars($item['caption'] ?? '') ?></h3>
                                 <div class="carousel-card-date">
                                     <i class="fas fa-calendar"></i>
-                                    <span><?= date('M d, Y', strtotime($item['upload_date'])) ?></span>
+                                    <span><?= date('M d, Y', strtotime($item['tanggal_upload'] ?? '')) ?></span>
                                 </div>
                             </div>
                         </div>
@@ -89,22 +89,22 @@
             <!-- Masonry Gallery Grid -->
             <div class="gallery-masonry">
                 <?php foreach ($galleryItems as $index => $item): ?>
-                    <div class="gallery-item" data-category="<?= htmlspecialchars($item['category']) ?>">
+                    <div class="gallery-item" data-category="<?= htmlspecialchars($item['kategori']) ?>">
                         <div class="gallery-card">
                             <div class="gallery-image-container">
-                                <img src="<?= htmlspecialchars($item['image']) ?>" 
-                                     alt="<?= htmlspecialchars($item['title']) ?>"
+                                <img src="<?= htmlspecialchars($item['file_url']) ?>" 
+                                     alt="<?= htmlspecialchars($item['caption']) ?>"
                                      loading="lazy">
                                 <div class="gallery-overlay">
                                     <div class="gallery-overlay-content">
                                         <span class="gallery-category-badge">
-                                            <?= htmlspecialchars($item['category']) ?>
+                                            <?= htmlspecialchars($item['kategori']) ?>
                                         </span>
                                         <h3 class="gallery-item-title">
-                                            <?= htmlspecialchars($item['title']) ?>
+                                            <?= htmlspecialchars($item['caption']) ?>
                                         </h3>
                                         <p class="gallery-item-description">
-                                            <?= htmlspecialchars($item['description']) ?>
+                                            <?= htmlspecialchars($item['deskripsi']) ?>
                                         </p>
                                         <div class="gallery-meta">
                                             <span class="gallery-uploader">
@@ -113,7 +113,7 @@
                                             </span>
                                             <span class="gallery-date">
                                                 <i class="fas fa-calendar"></i>
-                                                <?= date('M d, Y', strtotime($item['upload_date'])) ?>
+                                                <?= date('M d, Y', strtotime($item['taggal_upload'])) ?>
                                             </span>
                                         </div>
                                     </div>
